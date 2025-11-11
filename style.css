@@ -1,143 +1,217 @@
-/* —— basic reset —— */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --lipstick-red-black: #111111;
+  --lipstick-red-gold: #b89a5c;
+  --lipstick-red-cream: #f4f0e8;
+  --lipstick-red-grey: #444444;
+  /* brand accent red for the name */
+  --lipstick-red-accent: #e60023;
 }
 
-/* —— body + fonts —— */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #000000;
+  color: #ffffff;
+}
+
+.chat-page {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: radial-gradient(circle at top, #222222 0, #000000 65%);
 }
 
-.page-wrapper {
-  width: 90%;
+.chat-container {
+  background: #000000;
+  border: 1px solid var(--lipstick-red-gold);
+  border-radius: 20px;
+  width: 100%;
   max-width: 900px;
-}
-
-/* header */
-.site-header {
-  text-align: center;
-  padding-top: 50px;
-}
-
-.site-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-/* chat window */
-.chatbox {
-  margin: 40px 0;
-}
-
-.chat-window {
-  height: 360px;
-  border: 1px solid #000;
-  padding: 20px;
-  font-size: 18px;
-  line-height: 1.5;
-  overflow-y: auto;
-  background: #fafafa;
-  white-space: pre-line;
-}
-
-/* messages */
-.msg {
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-
-.msg.user {
-  color: #000;
-}
-
-.msg.ai {
-  color: #666666;
-}
-
-/* input row */
-.chat-form {
+  height: 80vh;
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
-.chat-form input {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  font-size: 18px;
-}
-
-.chat-form input:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
-}
-
-.chat-form button {
-  font-size: 18px;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  width: 48px;
-  height: 48px;
+/* Header */
+.chat-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(90deg, #000000, #181818);
 }
 
-.chat-form button .material-icons {
-  font-size: 24px;
+.brand-logo {
+  height: 40px;
+  margin-right: 16px;
 }
 
-.chat-form button:hover {
-  background: #666666;
+/* ensure header text can shrink and remain visible next to the logo */
+.brand-logo {
+  height: 40px;
+  margin-right: 12px;
+  flex: 0 0 auto;
+  width: auto;
 }
 
-.chat-form button:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+/* If the logo image is dark, make it visible by increasing brightness / inverting colors.
+   This helps dark logos show up against the dark header background. */
+.brand-logo.visible-light {
+  filter: brightness(0) invert(1);
 }
 
-/* visually hidden */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+.header-text {
+  flex: 1 1 auto;
+  min-width: 0; /* allow flex children to shrink */
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lipstick-red-accent);
   white-space: nowrap;
-  border: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
-/* footer */
-.site-footer {
-  margin: 60px 0 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
+.header-text p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #cccccc;
 }
 
-.site-footer nav {
-  margin-top: 12px;
+/* Chat messages */
+.chat-messages {
+  flex: 1;
+  padding: 16px 20px 12px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: radial-gradient(circle at top, #222222 0, #000000 60%);
 }
 
-.site-footer a {
-  margin: 0 8px;
-  color: #000;
-  text-decoration: none;
+.message-row {
+  display: flex;
+  margin-bottom: 12px;
 }
 
-.site-footer a:hover {
-  color: #666666;
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-row.assistant {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* User bubble */
+.message-row.user .message-bubble {
+  background: var(--lipstick-red-gold);
+  color: #000000;
+  border-bottom-right-radius: 4px;
+}
+
+/* Assistant bubble */
+.message-row.assistant .message-bubble {
+  background: #181818;
+  color: #ffffff;
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Footer / Input */
+.chat-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #050505;
+  padding-top: 4px;
+}
+
+.chat-input-area {
+  display: flex;
+  padding: 10px 16px 8px;
+  gap: 8px;
+}
+
+.chat-input-area input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #333333;
+  background: #111111;
+  color: #ffffff;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.chat-input-area input[type="text"]::placeholder {
+  color: #777777;
+}
+
+.chat-input-area button {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: var(--lipstick-red-gold);
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chat-input-area button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.chat-input-area button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.footer-note {
+  font-size: 0.7rem;
+  color: #888888;
+  padding: 0 18px 10px;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .chat-container {
+    height: 90vh;
+  }
+
+  .header-text h1 {
+    font-size: 1rem;
+  }
+
+  .header-text p {
+    font-size: 0.8rem;
+  }
+
+  .message-bubble {
+    max-width: 85%;
+  }
 }

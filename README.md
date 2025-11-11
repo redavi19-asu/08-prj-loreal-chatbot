@@ -1,6 +1,6 @@
-# Project 8: L'Oréal Chatbot
+# Project 8: Lipstick Red Chatbot
 
-L’Oréal is exploring the power of AI, and your job is to showcase what's possible. Your task is to build a chatbot that helps users discover and understand L’Oréal’s extensive range of products—makeup, skincare, haircare, and fragrances—as well as provide personalized routines and recommendations.
+Lipstick Red is exploring the power of AI, and your job is to showcase what's possible. Your task is to build a chatbot that helps users discover and understand Lipstick Red’s range of products—makeup, skincare, haircare, and fragrances—as well as provide personalized routines and recommendations.
 
 ## 🚀 Launch via GitHub Codespaces
 
@@ -11,4 +11,4 @@ L’Oréal is exploring the power of AI, and your job is to showcase what's poss
 
 When deploying through Cloudflare, make sure your API request body (in `script.js`) includes a `messages` array and handle the response by extracting `data.choices[0].message.content`.
 
-Enjoy building your L’Oréal beauty assistant! 💄
+Enjoy building your Lipstick Red beauty assistant! 💄

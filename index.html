@@ -3,64 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Lipstick Red Beauty Advisor Chatbot</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="page-wrapper">
-      <!------- Header / Branding ------->
-      <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
-      </header>
-
-      <!------- Chat Area ------->
-      <main>
-        <section class="chatbox">
-          <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
+    <div class="chat-page">
+      <div class="chat-container">
+        <header class="chat-header">
+          <!-- Make sure this path matches your logo file location -->
+          <img
+            src="img/loreal-logo.png"
+            alt="Lipstick Red Logo"
+            class="brand-logo visible-light"
+          />
+          <div class="header-text">
+            <h1>Lipstick Red Beauty Chat</h1>
+            <p>
+              Your AI-powered beauty advisor for makeup, skincare, haircare &
+              fragrances
+            </p>
           </div>
+        </header>
 
-          <form id="chatForm" class="chat-form">
-            <label for="userInput" class="visually-hidden">Message</label>
+        <main id="chatWindow" class="chat-messages">
+          <!-- Messages will be injected here by script.js -->
+        </main>
+
+        <footer class="chat-footer">
+          <form id="chatForm" class="chat-input-area">
             <input
               id="userInput"
               name="userInput"
               type="text"
-              placeholder="Ask me about products or routines…"
               autocomplete="off"
+              placeholder="Ask about Lipstick Red routines, shades, ingredients, or product suggestions..."
               required
             />
-            <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
-              <span class="visually-hidden">Send</span>
-            </button>
+            <button id="sendBtn" type="submit">Send</button>
           </form>
-        </section>
-      </main>
-
-      <!------- Footer Links ------->
-      <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
-        <nav>
-          <!-- These URLs are placeholders -->
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact</a>
-        </nav>
-      </footer>
+          <div class="footer-note">
+            Powered by OpenAI · Secured with Cloudflare · For Lipstick
+            Red-related & beauty questions only
+          </div>
+        </footer>
+      </div>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
